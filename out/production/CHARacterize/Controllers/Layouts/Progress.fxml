@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:id="window" prefHeight="197.0" prefWidth="435.0" style="-fx-background-color: #8b95a5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ProgressController">
+   <children>
+      <ProgressBar id="1" fx:id="progressBar" layoutX="98.0" layoutY="66.0" prefHeight="65.0" prefWidth="240.0" progress="0.0" />
+      <Label layoutX="81.0" layoutY="34.0" text="Please wait, croping images">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="177.0" layoutY="144.0" mnemonicParsing="false" onAction="#hideWindow" prefHeight="39.0" prefWidth="82.0" text="Close" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane prefHeight="700.0" prefWidth="1261.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainLayoutController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <AnchorPane cacheShape="false" centerShape="false" prefHeight="700.0" prefWidth="1000.0">
+         <children>
+            <StackPane layoutX="42.0" layoutY="85.0" style="-fx-border-color: black; -fx-border-width: 3;">
+               <children>
+                  <Canvas fx:id="canvas" height="546.0" onMouseDragged="#continueDrawing" onMousePressed="#startDrawing" style="-fx-fill: red;" width="521.0" />
+               </children>
+            </StackPane>
+            <HBox layoutY="4.0" prefHeight="40.0">
+               <children>
+                  <MenuBar prefHeight="25.0" prefWidth="246.0">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Tests">
+                        <items>
+                          <MenuItem mnemonicParsing="false" onAction="#startTests" text="Start tests" />
+                        </items>
+                      </Menu>
+                        <Menu mnemonicParsing="false" text="Neural Network">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#resetPerceptrons" text="Reset perceptrons" />
+                              <MenuItem fx:id="teachNeuralNetworkButton" disable="true" mnemonicParsing="false" onAction="#teachNeuralNetwork" text="Teach Neural Network" />
+                              <MenuItem mnemonicParsing="false" onAction="#showPropertiesOfNeuralNetwork" text="Properties" />
+                              <MenuItem mnemonicParsing="false" onAction="#buildNeuralNetwork" text="Build Network" />
+                           </items>
+                        </Menu>
+                    </menus>
+                  </MenuBar>
+                  <MenuButton mnemonicParsing="false" prefHeight="25.0" text="Data loading">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#loadDataToNeuralNetwork" text="Load data to Neural Network" />
+                        <MenuItem mnemonicParsing="false" onAction="#displayDirectoryChoosingDialog" text="Load images" />
+                    </items>
+                  </MenuButton>
+               </children>
+            </HBox>
+            <VBox layoutX="582.0" layoutY="99.0" spacing="20.0" style="-fx-border-width: 3; -fx-border-color: gray;">
+               <children>
+                  <ColorPicker fx:id="colorPicker" prefHeight="39.0" prefWidth="148.0" promptText="Choose color of line" />
+                  <Label text="Width of line">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Slider fx:id="lineWidthSlider" blockIncrement="1.0" max="10.0" min="1.0" prefHeight="21.0" prefWidth="119.0" showTickLabels="true" showTickMarks="true" value="8.0" />
+                  <Button mnemonicParsing="false" onAction="#clearCanvas" prefHeight="39.0" prefWidth="146.0" text="Clear" />
+               </children>
+            </VBox>
+            <StackPane layoutX="569.0" layoutY="531.0" style="-fx-border-color: orange; -fx-border-width: 3;">
+               <children>
+                  <ImageView fx:id="imageView" fitHeight="100.0" fitWidth="100.0" layoutX="575.0" layoutY="542.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </StackPane>
+            <Button layoutX="675.0" layoutY="598.0" mnemonicParsing="false" onAction="#displaySnapshot" prefHeight="39.0" prefWidth="165.0" text="Display Snapshot" />
+            <Label layoutX="585.0" layoutY="503.0" text="Snapshot">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="631.0" layoutY="71.0" prefHeight="28.0" prefWidth="57.0" text="Tools" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="guessedLetter" alignment="CENTER" editable="false" layoutX="573.0" layoutY="308.0" prefHeight="182.0" prefWidth="205.0" text="?">
+               <font>
+                  <Font size="89.0" />
+               </font>
+            </TextField>
+            <Button layoutX="677.0" layoutY="531.0" mnemonicParsing="false" onAction="#guessLetter" prefHeight="39.0" prefWidth="165.0" text="Guess letter" />
+            <TextArea fx:id="infoTextField" editable="false" layoutX="877.0" layoutY="74.0" prefHeight="552.0" prefWidth="334.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="1023.0" layoutY="24.0" text="Logs">
+               <font>
+                  <Font name="System Italic" size="22.0" />
+               </font>
+            </Label>
+            <Button layoutX="985.0" layoutY="637.0" mnemonicParsing="false" onAction="#clearLogs" prefHeight="39.0" prefWidth="118.0" text="Clear" />
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>
