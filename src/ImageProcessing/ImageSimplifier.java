@@ -8,7 +8,6 @@ import java.util.Arrays;
 public class ImageSimplifier {
 
   private static final int WHITE_COLOR = -1;
-  public static int i = 0;
 
   public static double[][] getSimplifiedPixelsArray(Image image) {
     double[][] buffer = new double[(int) image.getWidth()][(int) image.getHeight()];

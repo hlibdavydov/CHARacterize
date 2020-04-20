@@ -39,6 +39,8 @@
                               <MenuItem fx:id="teachNeuralNetworkButton" disable="true" mnemonicParsing="false" onAction="#teachNeuralNetwork" text="Teach Neural Network" />
                               <MenuItem mnemonicParsing="false" onAction="#showPropertiesOfNeuralNetwork" text="Properties" />
                               <MenuItem mnemonicParsing="false" onAction="#buildNeuralNetwork" text="Build Network" />
+                              <MenuItem mnemonicParsing="false" onAction="#serializeNetwork" text="Serialize Network" />
+                              <MenuItem mnemonicParsing="false" onAction="#loadNetworkFromFile" text="Load Network" />
                            </items>
                         </Menu>
                     </menus>

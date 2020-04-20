@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Popup;
 
 import javax.imageio.ImageIO;
@@ -150,25 +151,23 @@ public class MainLayoutController implements Initializable {
         return null;
       }
     };
-    ExecutorService executorService =  Executors.newFixedThreadPool(1);
+    ExecutorService executorService = Executors.newFixedThreadPool(1);
     executorService.execute(task);
     executorService.shutdown();
   }
 
 
-
   public void guessLetter(ActionEvent actionEvent) throws FileNotFoundException {
     makeSnapshot();
-    infoTextField.clear();
     InputStream inputStream = new FileInputStream("D:\\Projects\\CHARacterize\\src\\Snapshots\\Snapshot.png");
     Image image = new Image(inputStream, LearningImagesVisitor.WIDTH_OF_IMAGE, LearningImagesVisitor.HIGH_OF_IMAGE, false, false);
     Letter letter = new Letter('?', ImageSimplifier.getSimplifiedPixelsArray(image));
-
-    double[] outputs = NeuralNetwork.predictOutputOfLetter(letter);
     char predictedLetter = NeuralNetwork.getPredictedLetterFor(letter);
-    for (int i = 0; i < outputs.length; i++) {
+    //double[] outputs = NeuralNetwork.predictOutputOfLetter(letter);
+/*    for (int i = 0; i < outputs.length; i++) {
       infoTextField.appendText((char) ('A' + i) + ": " + outputs[i] + "\n");
-    }
+    }*/
+
     guessedLetter.setText(String.valueOf(predictedLetter));
   }
 
@@ -182,7 +181,10 @@ public class MainLayoutController implements Initializable {
 
   public void startTests(ActionEvent actionEvent) {
     double accuracy = NeuralNetwork.getAccuracy();
-    infoTextField.appendText(String.format("Accuracy: %.2f", accuracy)+"%\n");
+    infoTextField.appendText(String.format("Accuracy: %.2f", accuracy) + "%\n");
+    NeuralNetwork.accuracyForEachLetter.forEach((key, value) -> {
+      infoTextField.appendText(String.format("%s correctly guessed: %.2f\n", key, value));
+    });
   }
 
 
@@ -202,6 +204,29 @@ public class MainLayoutController implements Initializable {
   public void buildNeuralNetwork(ActionEvent actionEvent) {
     teachNeuralNetworkButton.setDisable(false);
     NeuralNetwork.buildNetwork();
+  }
 
+  public void serializeNetwork(ActionEvent actionEvent) {
+    var fileChooser = new FileChooser();
+    fileChooser.setInitialDirectory(new File("src/SerializedNetworks"));
+    fileChooser.setTitle("Chooser file to write your network");
+    File file = fileChooser.showOpenDialog(Main.mainStage);
+    if (file != null) {
+      NeuralNetwork.serializeNetwork(file);
+      infoTextField.appendText("Network was successfully serialized\n");
+    }
+  }
+
+  public void loadNetworkFromFile(ActionEvent actionEvent) {
+    var fileChooser = new FileChooser();
+    fileChooser.setInitialDirectory(new File("src/SerializedNetworks"));
+    fileChooser.setTitle("Chooser network to load\n");
+    File file = fileChooser.showOpenDialog(Main.mainStage);
+    if (file != null) {
+      NeuralNetwork.deserializeNetwork(file);
+      infoTextField.appendText("Network was successfully loaded\n");
+    } else {
+      infoTextField.appendText("Failed to load network\n");
+    }
   }
 }

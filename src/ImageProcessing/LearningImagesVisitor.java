@@ -48,7 +48,6 @@ public class LearningImagesVisitor implements FileVisitor<Path> {
     if (!dir.getFileName().toString().matches("[a-zA-Z]")) {
       return FileVisitResult.CONTINUE;
     }
-    System.out.println(dir.getFileName());
     double numberOfFiles = Objects.requireNonNull(dir.toFile().listFiles()).length;
     numberOfFilesWithinTrainingSet = (int) Math.round(numberOfFiles * PROPORTION_OF_TRAINING_DATA_IN_SET);
     numberOfCurrentFile = 0;

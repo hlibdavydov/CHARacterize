@@ -1,11 +1,12 @@
 package DataProcessing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Perceptron {
+public class Perceptron implements Serializable {
 
-  private static double parameter = 0.01;
-  private static double learningRate = 0.1;
+  private static double parameter = 0.1;
+  private static double learningRate = 0.01;
   private ArrayList<Double> weights = new ArrayList<>();
   private char letterToIdentify;
   private int layerInNeuralNetwork;
