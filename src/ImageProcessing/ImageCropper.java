@@ -19,7 +19,8 @@ public class ImageCropper {
     int min = 0;
     for (int y = 0; y < buff.getHeight(); y++) {
       for (int x = 0; x < buff.getWidth(); x++) {
-        if (!(new Color(buff.getRGB(x, y)).equals(Color.WHITE))) {
+        if (!(new Color(buff.getRGB(x, y)).equals(Color.WHITE)) &&
+                !(new Color(buff.getRGB(x, y)).equals(Color.BLACK))) {
           return min;
         }
       }
@@ -32,7 +33,8 @@ public class ImageCropper {
     int max = buff.getHeight();
     for (int y = buff.getHeight() - 1; y >= 0; y--) {
       for (int x = buff.getWidth() - 1; x >= 0; x--) {
-        if (!(new Color(buff.getRGB(x, y)).equals(Color.WHITE))) {
+        if (!(new Color(buff.getRGB(x, y)).equals(Color.WHITE)) &&
+                !(new Color(buff.getRGB(x, y)).equals(Color.BLACK))) {
           return max;
         }
       }
@@ -45,7 +47,8 @@ public class ImageCropper {
     int max = buff.getWidth();
     for (int x = buff.getWidth() - 1; x >= 0; x--) {
       for (int y = buff.getHeight() - 1; y >= 0; y--) {
-        if (!(new Color(buff.getRGB(x, y)).equals(Color.WHITE))) {
+        if (!(new Color(buff.getRGB(x, y)).equals(Color.WHITE))&&
+                !(new Color(buff.getRGB(x, y)).equals(Color.BLACK))) {
           return max;
         }
       }
@@ -58,7 +61,8 @@ public class ImageCropper {
     int min = 0;
     for (int x = 0; x < buff.getWidth(); x++) {
       for (int y = 0; y < buff.getHeight(); y++) {
-        if (!(new Color(buff.getRGB(x, y)).equals(Color.WHITE))) {
+        if (!(new Color(buff.getRGB(x, y)).equals(Color.WHITE)) &&
+                !(new Color(buff.getRGB(x, y)).equals(Color.BLACK))) {
           return min;
         }
       }

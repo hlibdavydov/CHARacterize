@@ -86,7 +86,7 @@
                   <Font size="89.0" />
                </font>
             </TextField>
-            <Button layoutX="677.0" layoutY="531.0" mnemonicParsing="false" onAction="#guessLetter" prefHeight="39.0" prefWidth="165.0" text="Guess letter" />
+            <Button layoutX="675.0" layoutY="531.0" mnemonicParsing="false" onAction="#guessLetter" prefHeight="39.0" prefWidth="165.0" text="Guess letter" />
             <TextArea fx:id="infoTextField" editable="false" layoutX="877.0" layoutY="74.0" prefHeight="552.0" prefWidth="334.0">
                <font>
                   <Font size="19.0" />
@@ -97,7 +97,7 @@
                   <Font name="System Italic" size="22.0" />
                </font>
             </Label>
-            <Button layoutX="985.0" layoutY="637.0" mnemonicParsing="false" onAction="#clearLogs" prefHeight="39.0" prefWidth="118.0" text="Clear" />
+            <Button layoutX="985.0" layoutY="626.0" mnemonicParsing="false" onAction="#clearLogs" prefHeight="39.0" prefWidth="118.0" text="Clear" />
          </children>
       </AnchorPane>
    </children>

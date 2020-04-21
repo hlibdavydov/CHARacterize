@@ -94,7 +94,7 @@ public class MainLayoutController implements Initializable {
 
   public void clearCanvas(ActionEvent actionEvent) {
     Paint fill = canvasContext.getFill();
-    canvasContext.setFill(Color.WHITE);
+    canvasContext.setFill(Color.BLACK);
     canvasContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     canvasContext.setFill(fill);
   }

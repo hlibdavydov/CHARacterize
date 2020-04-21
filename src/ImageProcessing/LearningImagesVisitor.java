@@ -18,10 +18,10 @@ public class LearningImagesVisitor implements FileVisitor<Path> {
   public static final double PROPORTION_OF_TRAINING_DATA_IN_SET = 0.80;
   public static final int WIDTH_OF_IMAGE = 28;
   public static final int HIGH_OF_IMAGE = 28;
+  public static final int numberOfEachLetterToProcess = 100;
   int numberOfFilesWithinTrainingSet;
   int numberOfCurrentFile;
   int numberOfFoldersProcessed;
-  double averageBlackPixels = 0;
   private DoubleProperty progress = new SimpleDoubleProperty(0);
   Path startingDir;
 
@@ -48,10 +48,9 @@ public class LearningImagesVisitor implements FileVisitor<Path> {
     if (!dir.getFileName().toString().matches("[a-zA-Z]")) {
       return FileVisitResult.CONTINUE;
     }
-    double numberOfFiles = Objects.requireNonNull(dir.toFile().listFiles()).length;
-    numberOfFilesWithinTrainingSet = (int) Math.round(numberOfFiles * PROPORTION_OF_TRAINING_DATA_IN_SET);
+    //double numberOfFiles = Objects.requireNonNull(dir.toFile().FileslistFiles()).length;
+    numberOfFilesWithinTrainingSet = (int) Math.round(numberOfEachLetterToProcess * PROPORTION_OF_TRAINING_DATA_IN_SET);
     numberOfCurrentFile = 0;
-    averageBlackPixels = 0;
     return FileVisitResult.CONTINUE;
   }
 
@@ -68,6 +67,9 @@ public class LearningImagesVisitor implements FileVisitor<Path> {
       NeuralNetwork.getTestData().add(letter);
     }
     numberOfCurrentFile++;
+    if (numberOfCurrentFile > numberOfEachLetterToProcess) {
+      return FileVisitResult.SKIP_SIBLINGS;
+    }
     return FileVisitResult.CONTINUE;
   }
 

@@ -19,7 +19,7 @@ public class ImageLoader implements FileVisitor<Path> {
   private String currentlyWorkingDirectory;
   private DoubleProperty progress = new SimpleDoubleProperty(0);
   private int numberOfDirectoriesProcessed = 0;
-
+  private int numberOfFileInCurrentDirectory;
 
   public DoubleProperty progressProperty() {
     return progress;
@@ -45,6 +45,7 @@ public class ImageLoader implements FileVisitor<Path> {
     if (!dir.getFileName().toString().matches("[a-zA-Z]")) {
       return FileVisitResult.CONTINUE;
     }
+    numberOfFileInCurrentDirectory = 0;
     createNewDirectoryToStoreDataFor(dir);
     return FileVisitResult.CONTINUE;
   }
@@ -71,6 +72,11 @@ public class ImageLoader implements FileVisitor<Path> {
       image = ImageCropper.cropImage(image);
     }
     ImageIO.write(image, "png", new File(currentlyWorkingDirectory + "/" + file.getFileName()));
+    numberOfFileInCurrentDirectory++;
+    if (numberOfFileInCurrentDirectory == LearningImagesVisitor.numberOfEachLetterToProcess) {
+      return FileVisitResult.SKIP_SIBLINGS;
+    }
+
     return FileVisitResult.CONTINUE;
   }
 
