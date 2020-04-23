@@ -10,8 +10,8 @@ public class NeuralNetwork {
   public static HashMap<Character, Double> accuracyForEachLetter;
   static ArrayList<ArrayList<Perceptron>> network = new ArrayList<>();
   static int numberOfLayersInNeuralNetwork = 3;
-  private static ArrayList<Letter> trainingData = new ArrayList<>(56 * 26);
-  private static ArrayList<Letter> testData = new ArrayList<>(14 * 26);
+  private static ArrayList<Letter> trainingData = new ArrayList<>();
+  private static ArrayList<Letter> testData = new ArrayList<>();
   private static HashMap<Integer, Integer> numbersOfPerceptronForEachLayer = new HashMap<>();
   private static int numberOfLearningIterations = 1;
   private static double accuracy = 0;

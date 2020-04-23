@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: grey; -fx-border-width: 3; -fx-background-color: #c2c2d6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.NeuralNetworkPropertiesController">
    <children>
       <Label layoutX="177.0" layoutY="14.0" text="Properties of Neural Network">
@@ -63,7 +62,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <TextField fx:id="numberOfPerceptronsInLayer2" alignment="CENTER" prefHeight="39.0" prefWidth="143.0" text="26" />
-                  <TextField fx:id="numberOfPerceptronsInLayer1" alignment="CENTER" prefHeight="39.0" prefWidth="143.0" text="5" />
+                  <TextField fx:id="numberOfPerceptronsInLayer1" alignment="CENTER" prefHeight="39.0" prefWidth="143.0" text="184" />
                   <TextField fx:id="numberOfPerceptronsInLayer0" alignment="CENTER" prefHeight="39.0" prefWidth="143.0" text="784" />
                </children>
             </VBox>

@@ -5,6 +5,7 @@ import DataProcessing.NeuralNetwork;
 import DataProcessing.Perceptron;
 import GUI.Main;
 import ImageProcessing.ImageCropper;
+import ImageProcessing.ImageLoader;
 import ImageProcessing.ImageSimplifier;
 import ImageProcessing.LearningImagesVisitor;
 import javafx.application.Platform;
@@ -55,15 +56,14 @@ public class MainLayoutController implements Initializable {
   public void initialize(URL url, ResourceBundle resourceBundle) {
     canvasContext = canvas.getGraphicsContext2D();
     canvasContext.setFill(Color.WHITE);
-    canvasContext.setLineWidth(lineWidthSlider.getValue());
     canvasContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    canvasContext.setLineWidth(lineWidthSlider.getValue());
     lineWidthSlider.valueChangingProperty().addListener(observable -> {
       if (!lineWidthSlider.isValueChanging()) {
         canvasContext.setLineWidth(lineWidthSlider.getValue());
       }
     });
-    colorPicker.valueProperty().addListener(observable ->
-            canvasContext.setStroke(colorPicker.getValue()));
+
   }
 
   public void makeSnapshot() {
@@ -94,7 +94,7 @@ public class MainLayoutController implements Initializable {
 
   public void clearCanvas(ActionEvent actionEvent) {
     Paint fill = canvasContext.getFill();
-    canvasContext.setFill(Color.BLACK);
+    canvasContext.setFill(Color.WHITE);
     canvasContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     canvasContext.setFill(fill);
   }
@@ -116,6 +116,7 @@ public class MainLayoutController implements Initializable {
     var directoryChooser = new DirectoryChooser();
     directoryChooser.setTitle("Choose directory of your data to load");
     var file = directoryChooser.showDialog(Main.mainStage);
+    if (file != null) {
     var learningImageVisitor = new LearningImagesVisitor(file.toPath());
     ProgressIndicator indicator = new ProgressIndicator();
     indicator.progressProperty().bind(learningImageVisitor.progressProperty());
@@ -133,6 +134,7 @@ public class MainLayoutController implements Initializable {
       }
     };
     new Thread(task).start();
+    }
   }
 
   public void teachNeuralNetwork(ActionEvent actionEvent) {
@@ -160,7 +162,7 @@ public class MainLayoutController implements Initializable {
   public void guessLetter(ActionEvent actionEvent) throws FileNotFoundException {
     makeSnapshot();
     InputStream inputStream = new FileInputStream("D:\\Projects\\CHARacterize\\src\\Snapshots\\Snapshot.png");
-    Image image = new Image(inputStream, LearningImagesVisitor.WIDTH_OF_IMAGE, LearningImagesVisitor.HIGH_OF_IMAGE, false, false);
+    Image image = new Image(inputStream, LearningImagesVisitor.WIDTH_OF_IMAGE, LearningImagesVisitor.HIGH_OF_IMAGE, false, true);
     Letter letter = new Letter('?', ImageSimplifier.getSimplifiedPixelsArray(image));
     char predictedLetter = NeuralNetwork.getPredictedLetterFor(letter);
     //double[] outputs = NeuralNetwork.predictOutputOfLetter(letter);
@@ -192,6 +194,7 @@ public class MainLayoutController implements Initializable {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("Layouts/NeuralNetworkProperties.fxml"));
     Parent window = loader.load();
     NeuralNetworkPropertiesController controller = loader.getController();
+    controller.loadPropertiesFormNeuralNetwork();
     Popup popup = controller.popup;
     popup.getContent().setAll(window);
     popup.show(Main.mainStage);

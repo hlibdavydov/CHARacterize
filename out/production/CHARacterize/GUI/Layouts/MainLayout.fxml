@@ -19,9 +19,9 @@
    <children>
       <AnchorPane cacheShape="false" centerShape="false" prefHeight="700.0" prefWidth="1000.0">
          <children>
-            <StackPane layoutX="42.0" layoutY="85.0" style="-fx-border-color: black; -fx-border-width: 3;">
+            <StackPane layoutX="14.0" layoutY="56.0" style="-fx-border-color: black; -fx-border-width: 3;">
                <children>
-                  <Canvas fx:id="canvas" height="546.0" onMouseDragged="#continueDrawing" onMousePressed="#startDrawing" style="-fx-fill: red;" width="521.0" />
+                  <Canvas fx:id="canvas" height="601.0" onMouseDragged="#continueDrawing" onMousePressed="#startDrawing" style="-fx-fill: black;" width="547.0" />
                </children>
             </StackPane>
             <HBox layoutY="4.0" prefHeight="40.0">

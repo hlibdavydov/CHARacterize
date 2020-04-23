@@ -32,6 +32,10 @@ public class NeuralNetworkPropertiesController implements Initializable {
     perceptronsForEachLayer.put(2, Integer.valueOf(numberOfPerceptronsInLayer2.getText()));
     NeuralNetwork.setNumbersOfPerceptronForEachLayer(perceptronsForEachLayer);
   }
+  public void loadPropertiesFormNeuralNetwork() {
+    learningRateForNeuralNetwork.setText(String.valueOf(Perceptron.getLearningRate()));
+    valueOfParameterForNeuralNetwork.setText(String.valueOf(Perceptron.getParameter()));
+  }
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {

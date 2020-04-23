@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Perceptron implements Serializable {
 
+  private static final long serialVersionUID = 6456577629446212095L;
   private static double parameter = 0.1;
   private static double learningRate = 0.01;
   private ArrayList<Double> weights = new ArrayList<>();
@@ -13,10 +14,11 @@ public class Perceptron implements Serializable {
   private int numberInLayerOfNeuralNetwork;
   private boolean isInTheLastLayer;
   private double threshold;
+
   private double delta;
+
   private double output;
   private double[] input;
-
   public Perceptron(char letterToIdentify, int layerInNeuralNetwork,int numberInLayerOfNeuralNetwork, boolean isInTheLastLayer) {
     this(layerInNeuralNetwork,numberInLayerOfNeuralNetwork, isInTheLastLayer);
     this.letterToIdentify = letterToIdentify;
@@ -40,6 +42,10 @@ public class Perceptron implements Serializable {
   public void processInput(double[] input) {
     this.input = input;
     this.output = getPerceptronOutputBasedOn(input);
+  }
+
+  public static double getLearningRate() {
+    return learningRate;
   }
 
   public void processInput() {
@@ -125,5 +131,9 @@ public class Perceptron implements Serializable {
     for (int i = 0; i < amountOfWeightsToAdd; i++) {
       weights.add((Math.random() * 10 - 5));
     }
+  }
+
+  public static double getParameter() {
+    return parameter;
   }
 }
